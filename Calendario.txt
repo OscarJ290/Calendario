@@ -14,7 +14,7 @@ public class Service { HOLA SOY ERANDI :)
         if(null==y||y.length()==0||null==m||m.length()==0){
     
     
-            return "年份或月份不能输入为空。";
+            return "年份或月份不能输入为空/el anio y el mes no puede ser vacio。";
         }
 
         for (int i = 0; i < yearChar.length; i++) {
@@ -24,7 +24,7 @@ public class Service { HOLA SOY ERANDI :)
             if (yearChar[0] == '0' || !isOrNo) {
     
     
-                return "年份输入错误，请输入正确的年份。";
+                return "年份输入错误，请输入正确的年份//entrada de anio incorrecto, introduce el anio correcto。";
             }
         }
 
@@ -35,7 +35,7 @@ public class Service { HOLA SOY ERANDI :)
             if (yearChar[0] == '0' || !isOrNo) {
     
     
-                return "月份输入错误，请输入正确的月份。";
+                return "月份输入错误，请输入正确的月份/ntrada del mes incorrecto, introduce el mes correcto。";
             }
         }
 
@@ -45,33 +45,34 @@ public class Service { HOLA SOY ERANDI :)
         if (year < 1900||(year==1900&&month==1)) {
     
     
-            return "年份需要大于等于1900。当年份是1900时，月份需要大于1。";
+            return "年份需要大于等于1900。当年份是1900时，月份需要大于1/el anio tiene q ser mayor a 1900, en caso de que sea 1900, el mes tiene que ser mayor a 1。";
         }
 
         if (month > 12) {
     
     
-            return "月份输入错误，请输入正确的月份。";
+            return "月份输入错误，请输入正确的月份/mes incorrecto, introduce el mes correcto。";
         }
 
-        LocalDate endDate = LocalDate.of(year, month, 1);//设置输入的日期
+        LocalDate endDate = LocalDate.of(year, month, 1);//设置输入的日期/establece la facha
         LocalDate startDate = LocalDate.of(1900, 1, 1);
-        long sumDay = startDate.until(endDate, ChronoUnit.DAYS);//总相差的天数:3657
-        /*以上代码计算1900年1月1号到输入的年月的总天数，如输入2018和8，则计算1900.1.1-2018.7.31的天数*/
+        long sumDay = startDate.until(endDate, ChronoUnit.DAYS);//总相差的天数/diferencia de dias:3657
+        /*以上代码计算1900年1月1号到输入的年月的总天数，如输入2018和8，则计算1900.1.1-2018.7.31的天数*los codigos anteriores calculan los dias desde
+        primero de enero de 1990 hasta la fecha introducida, ejemplo:introducir 2018 y 8, daria de resultado los dias entre 1900.1.1-2018-7-31 /
 
-        long xingQi = (sumDay + 1) % 7; //xingQi用来计算输入的月份1号星期几
+        long xingQi = (sumDay + 1) % 7; //xingQi用来计算输入的月份1号星期几 XingQi es utilizado para calcular en que dia de la semana estas en el primero del mes
         long everydayXingQi = sumDay + 1;
-        int monthDay = endDate.lengthOfMonth();//用来接收输入的月份有几天
+        int monthDay = endDate.lengthOfMonth();//用来接收输入的月份有几天 este es para recivir cuantas dias hay el mes introducido
 
-        String result = "日\t一\t二\t三\t四\t五\t六\n";
+        String result = "日domindo\t一lunes\t二martes\t三miercoles\t四jueves\t五viernes\t六sabado\n";
         for (int i = 0; i < xingQi; i++) {
     
-        //输出每月1号前的空格
+        //输出每月1号前的空格, salida del espacio antes del primer dia del mes
             result += "\t";
         }
         for (int i = 1; i <= monthDay; i++) {
     
-      //输出每个月的天数和控制换行
+      //输出每个月的天数和控制换行/salida de cantidad del dias del mes y controllar el camnbio de renglon
             if (everydayXingQi % 7 == 6) {
     
     
@@ -127,3 +128,4 @@ public class Main extends Application {
         launch(args);
     }
 }
+
